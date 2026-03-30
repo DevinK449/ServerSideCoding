@@ -1,4 +1,8 @@
+const express = require("express");
 const mongoose = require("mongoose");
+
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 mongoose
   .connect("mongodb+srv://devink_db_user:WmOkAIdM604gy4C2@cluster0.repjbtw.mongodb.net/testdb?appName=Cluster0")
@@ -20,3 +24,11 @@ async function createMessage() {
 }
 
 createMessage();
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
